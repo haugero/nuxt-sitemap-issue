@@ -9,9 +9,9 @@ const route = useRoute();
 const slug = route.params.slug;
 const partnerId = ref<string>('');
 
-await queryContent<{id: string, slug: string}>('partner')
-    .where({ slug })
-    .findOne()
+await queryCollection('partners')
+    .where('slug', '=', slug)
+    .first()
     .then((p) => {
       partnerId.value = p.id;
     })
